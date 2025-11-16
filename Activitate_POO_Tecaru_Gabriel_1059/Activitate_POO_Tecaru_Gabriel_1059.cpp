@@ -129,8 +129,7 @@ int main()
     p3.afisare_info();
     cout << endl;
 
-    Proiect p4(20);
-    // Proiect p5(30);
+    //Proiect p4(20);
 
     return 0;
 }
