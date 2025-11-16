@@ -94,6 +94,37 @@ public:
         }
     }
 
+
+    /// supraincarcare operator = 
+    Proiect& operator=(const Proiect& other) {
+        if (this != &other) {
+            if (this->durataEtape != nullptr)
+            {
+                delete[] durataEtape;
+            }
+            this->durataEtape = nullptr;
+
+            if (other.nrEtape > 0 && other.durataEtape != nullptr) {
+                this->nrEtape = other.nrEtape;
+                this->durataEtape = new float[nrEtape];
+                for (int i = 0; i < nrEtape; i++)
+                {
+                    this->durataEtape[i] = other.durataEtape[i];
+                }
+            }
+
+            else {
+                this->nrEtape = 0;
+                this->durataEtape = nullptr;
+            }
+            this->nrMembri = other.nrMembri;
+            this->denumire = other.denumire;
+            this->bugetLuna = other.bugetLuna;
+            this->estimareCheltuieli = other.estimareCheltuieli;
+
+        }
+        return *this;
+    }
     
 
     void afisare_info() {
@@ -120,7 +151,7 @@ int main()
     float etape[] = { 1.4, 2.4, 3.5, 5.0 };
     Proiect p2(40, "Renovare Apartament", 3, 4, etape, 3000, 2500); // apel constructor cu toti parametrii
     float etape2[] = { 1.5 , 2.2, 4, 6 , 2.5 };
-    Proiect p6(40, "Reparare masina", 3, 5, etape, 1500, 1000);
+    
     Proiect p3 = p2; // apel constructor de copiere
     p1.afisare_info();
     cout << endl;
@@ -129,7 +160,14 @@ int main()
     p3.afisare_info();
     cout << endl;
 
-    //Proiect p4(20);
+    Proiect p5(40, "Reparare masina", 3, 5, etape, 1500, 1000);
+    Proiect p4(20);
+    p4.afisare_info();
+    p4 = p5; // apel operator egal
+    p4.afisare_info();
+    cout << "---------" << endl;
+    p5.afisare_info();
+    cout << endl;
 
     return 0;
 }
